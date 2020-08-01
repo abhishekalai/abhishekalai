@@ -23,11 +23,10 @@ To really put this problem statement into perspective, let's look at the two typ
 - **Full Text Search** - Will return results that contain full and exact matches of the search query. For example, the sneaky fox document would be returned in the results only if we search for `sneaky` or `house` or `pasta`, but not for `pas`, `hou`, `ouse`, `hou`, `sne` and so on, so forth.
 - **Fuzzy / Partial Text Search** - Will return results that contain partial matches of the search query. Now, the sneaky fox document would be returned in the results for all the search queries stated in the previous definition, including the *partial ones*.
 
-I hope you are with me till yet. If not, scroll back up, and go through it again.
-
 MongoDB's default text search functionality matches entire words only, *i.e.* the full text search.
 Now for the ones who really need a partial text search functionality, there are various ways to achieve this:
 - Use a solution like Elastic search for all data reading operations. Elastic search, *umm* is a search server, and caches a copy of the data for faster retrievals and ***search***
+- Use regular expressions to search, which are memory expensive, and on larger datasets would do more harm than good
 - Or do a custom implementation of **Partial Text search**
 
 ### Search Example
@@ -111,7 +110,9 @@ For example,
 - 2-grams (bigrams) of `coffee` would be `["co", "of", "ff", "fe", "ee"]`.
 - 3-grams (trigrams) of `coffee` would be `["cof", "off", "ffe", "fee"]`.
 
-You can play with the concept at this [NodeJS playground][runkit_endpoint] 
+You can play with the concept in the embedded notebook or at this [NodeJS playground][runkit_endpoint]
+
+I hope you are with me till yet. If not, scroll back up, and go through it again. We are going to jump into some code now.
 
 ### Building our N-gram generator ##
 
@@ -153,10 +154,18 @@ function generateNGrams(arr, keys, nMinimum = 2) {
 }
 {% endhighlight %}
 
-A playground to play around with the function is present [here][generator_playground].
+Play around with the function [here][generator_playground].
 
-1.  
+### Code Snippet Explanation
+1. We start looping through the array of objects `arr`
+2. Then we loop through the array of keys which are to be included in the `searchText`
+3. We add all the unique words of the search space to a Set
+4. Next, we loop on the contents of the set to generate n-grams for each word in the Set and add them to another Set, *(say S2)* so as to avoid duplicates and save space
+5. We now extract all the words from S2 in an array and concatenate into a string
+6. End Loop in Step *2.*
+7. End Loop in Step *1.*
 
+### Testing our search implementation
 Now let us update the documents in our database using the following queries so that they contain the `searchText`:
 {% highlight javascript %}
 db.stores.updateOne({ name: "Java Hut" }, { $set: { searchText: 'ja av va jav ava java hu ut hut co of ff fe ee cof off ffe fee coff offe ffee coffe offee coffee an nd and ca ak ke es cak ake kes cake akes cakes' } });
