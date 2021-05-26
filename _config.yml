@@ -1,7 +1,7 @@
 title: Abhishek's DevLog
 description: >- # this means to ignore newlines until "baseurl:"
   Abhishek's personal programming blog. The Only Official One. He uses it to share interesting things that he learns on his journey as a Software Developer.
-baseurl: "/" # the subpath of your site, e.g. /blog
+baseurl: "/abhishekalai" # the subpath of your site, e.g. /blog
 url: "https://abhishekalai.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: abhishek_alai
 github_username:  abhishekalai
