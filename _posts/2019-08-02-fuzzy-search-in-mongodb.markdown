@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Fuzzy / Partial Text search in MongoDB - A game for the brave"
+title:  "Fuzzy / Partial Text search in MongoDB using n-grams"
 date:   2020-07-30 15:45:32 +0530
 categories: mongodb
 ---
