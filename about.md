@@ -4,7 +4,7 @@ title: About - Abhishek's DevLog
 permalink: /about/
 ---
 
-Abhishek's personal programming blog. The Only Official One. Filled with posts and content that explain how he overcame the all new project setups, errors or learnt a new technique.
+Abhishek's personal programming blog. The Only Official One. He uses it to share interesting things that he learns on his journey as a Software Developer.
 
 Abhishek currently works as Software Developer @[Jai Kisan][jk_landing_page], an Indian FinTech startup that specialises in financing the rural India.
 
